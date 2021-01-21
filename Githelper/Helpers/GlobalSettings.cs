@@ -6,7 +6,6 @@ namespace Githelper
     public static class GlobalSettings
     {
         public static string LibraryPath;
-        public static string QasPath;
         public static string GitPath;
         public static string SubFolderPath;
         public static string[] Libraries;
@@ -25,10 +24,9 @@ namespace Githelper
             Console.Clear();
             Console.WriteLine("============================Settings=========================\r\n");
             Console.WriteLine($"1: Library Path: {LibraryPath}");
-            Console.WriteLine($"2: Recalc Qas Path: {QasPath}");
-            Console.WriteLine($"3: Git Path: {GitPath}");
-            Console.WriteLine($"4: SubLibrary Stub: {SubFolderPath}");
-            Console.WriteLine("5: <- Back");
+            Console.WriteLine($"2: Git Path: {GitPath}");
+            Console.WriteLine($"3: SubLibrary Stub: {SubFolderPath}");
+            Console.WriteLine("4: <- Back");
 
             char Input = Console.ReadKey().KeyChar;
 
@@ -55,29 +53,7 @@ namespace Githelper
 
                         break;
                     }
-
                 case '2':
-                    {
-                        Console.Clear();
-                        Console.WriteLine("Enter new Qas Path:");
-                        QasPath = Console.ReadLine();
-                        Console.Clear();
-                        Console.WriteLine($"Commit New Path as {QasPath} Y/N");
-                        string inp = Console.ReadLine();
-                        if (inp == "Y" || inp == "y")
-                        {
-                            WriteSettings();
-                        }
-                        else
-                        {
-                            ResetSettings();
-                        }
-
-                        EditSettings();
-                        break;
-                    }
-
-                case '3':
                     {
                         Console.Clear();
                         Console.WriteLine("Enter new Git Path:");
@@ -98,7 +74,7 @@ namespace Githelper
                         EditSettings();
                         break;
                     }
-                case '4':
+                case '3':
                     {
                         Console.Clear();
                         Console.WriteLine("Enter new sub library stub:");
@@ -129,7 +105,7 @@ namespace Githelper
         private static string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
         private static void WriteSettings()
         {
-            File.WriteAllText(baseDirectory + "\\Setup\\Settings.txt", $"{LibraryPath}\r\n{QasPath}\r\n{GitPath}\r\n{SubFolderPath}");
+            File.WriteAllText(baseDirectory + "\\Setup\\Settings.txt", $"{LibraryPath}\r\n{GitPath}\r\n{SubFolderPath}");
         }
 
         private static void ResetSettings()
@@ -138,10 +114,9 @@ namespace Githelper
            
 
             LibraryPath = File.ReadAllLines(baseDirectory + "\\Setup\\Settings.txt")[0];
-            QasPath = File.ReadAllLines(baseDirectory + "\\Setup\\Settings.txt")[1];
-            GitPath = File.ReadAllLines(baseDirectory + "\\Setup\\Settings.txt")[2];
-            GitLibraryFolder = File.ReadAllLines(baseDirectory + "\\Setup\\Settings.txt")[2] + "\\Library";
-            SubFolderPath = File.ReadAllLines(baseDirectory + "\\Setup\\Settings.txt")[3];
+            GitPath = File.ReadAllLines(baseDirectory + "\\Setup\\Settings.txt")[1];
+            GitLibraryFolder = File.ReadAllLines(baseDirectory + "\\Setup\\Settings.txt")[1] + "\\Library";
+            SubFolderPath = File.ReadAllLines(baseDirectory + "\\Setup\\Settings.txt")[2];
             Libraries = File.ReadAllLines(baseDirectory + "\\Setup\\Libraries.txt");
             BlankLib = baseDirectory  + "\\Setup\\Blank.qil";
             RecalcOrder = File.ReadAllLines(baseDirectory + "\\Setup\\RecalcOrder.txt");
@@ -151,7 +126,7 @@ namespace Githelper
             Console.Clear();
             if (!File.Exists(baseDirectory + "\\Setup\\Settings.txt"))
             {
-                File.WriteAllText(baseDirectory + "\\Setup\\Settings.txt", " \r\n \r\n \r\n \r\n");
+                File.WriteAllText(baseDirectory + "\\Setup\\Settings.txt", " \r\n \r\n \r\n");
                           
             }
 
