@@ -18,7 +18,6 @@ namespace Githelper.Helpers.Git
                     Console.BackgroundColor = ConsoleColor.White;
                     Console.ForegroundColor = ConsoleColor.Black;
                     Console.WriteLine($"{i + 1}: {Branches[i]}");
-                    Console.ResetColor();
                 }
                 else
                 {
@@ -27,6 +26,7 @@ namespace Githelper.Helpers.Git
                     Console.WriteLine($"{i + 1}: {Branches[i]}");
                 }
             }
+            Console.ResetColor();
 
             int.TryParse(Console.ReadLine(), out int Input);
 
